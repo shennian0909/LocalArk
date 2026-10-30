@@ -5,7 +5,7 @@
 - **[LocalArknights](https://github.com/loongling/LocalArknights)** by loongling: upstream local-server source and web templates. The Android baseline originated from commit `fa251b4450a2c7f13d61d1c37c457c0651d14ba5`. Of the 139 Android backend Java files, 44 matched corresponding baseline files byte-for-byte and 37 were modified at matching upstream paths. The remaining 58 backend paths are additional support paths; path classification is not a legal authorship determination.
 - **LocalArk Android adaptation**: embedded runtime, SQLite integration, compatibility adapters, Activity overlay, protocol/gameplay changes and single-APK tooling. Existing source notices are retained.
 
-The fork's root server was preserved at `8d8f083eb6d198fc7110d479cd22dbb9941cf9b2` (`v0.5.0.0`) before this import. These two commits identify different source baselines.
+The fork was based on upstream commit `8d8f083eb6d198fc7110d479cd22dbb9941cf9b2` (`v0.5.0.0`) before the Android import. The standalone server tree and unused upstream files were subsequently removed from the current tree; their Git history remains. These two commits identify different source baselines.
 
 ## External libraries
 
@@ -26,7 +26,7 @@ Additional API and tool references:
 - **Android SDK / AOSP**, including **D8/R8** and **apksig**: external platform compilation and legacy packaging/signing tools; no binaries included.
 - **[cryptography](https://github.com/pyca/cryptography)**: Python dependency used by legacy PKI tools.
 
-Additional upstream server dependencies remain declared in the root `pom.xml`; this Android list does not replace them.
+The standalone server's dependency declarations can be found in the [historical upstream pom.xml](https://github.com/loongling/LocalArknights/blob/8d8f083eb6d198fc7110d479cd22dbb9941cf9b2/pom.xml). That server is not part of the current source tree; the Android build uses the pinned dependencies listed above.
 
 ## Research and data references (not bundled)
 

@@ -8,6 +8,6 @@ The repository owner explicitly selected publication into this public fork. Visi
 
 Dependencies retain their own licenses. Obtain and retain the relevant notices from official distributions when building or redistributing software containing them. The compile helper downloads dependencies locally and does not publish their binaries.
 
-Game client/assets, accounts, saves, private configuration, TLS keys and signing material are absent from the Android import. Pre-existing upstream files and Git history remain preserved; this document is scoped to the added Android source tree.
+Game client/assets, accounts, saves, private configuration, TLS keys and signing material are absent from the current source tree. Unused standalone-server files, old data/configuration samples, logs, images and deployment documents inherited from the fork have been removed. Git history is preserved and may contain those removed files. Removing unused files does not remove the Android code's upstream provenance or change its licensing status.
 
 See [ATTRIBUTIONS.md](ATTRIBUTIONS.md) for project names and [SOURCE_MANIFEST.json](SOURCE_MANIFEST.json) for the exact originals.

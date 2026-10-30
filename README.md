@@ -1,16 +1,16 @@
 # LocalArk
 
-LocalArk is a fork of [loongling/LocalArknights](https://github.com/loongling/LocalArknights), with an Android in-process local backend and single-APK integration source tree.
+LocalArk is an Android in-process local backend and single-APK integration project derived from [loongling/LocalArknights](https://github.com/loongling/LocalArknights).
 
 ## Source layout
 
 | Location | Purpose |
 | --- | --- |
-| `src/`, `pom.xml` | Upstream Java/Spring Boot server, preserved at `8d8f083eb6d198fc7110d479cd22dbb9941cf9b2` (`v0.5.0.0`). |
 | [android-local/](android-local/README.md) | Android backend, SQLite storage, loopback networking, Activity overlay, bootstrap and packaging sources. |
-| [README.upstream.md](README.upstream.md) | Original upstream README, preserved without edits. |
+| [android-local/tools/](android-local/tools/) | Source verification, pinned dependency download and portable Java compilation. |
+| [android-local/docs/](android-local/docs/) | Build instructions, source manifest, project attributions, licensing notes and validation. |
 
-The Android compatibility shims are separate from the upstream server and must not replace its Spring dependencies.
+The standalone upstream Spring Boot server, Maven wrapper, old data/configuration samples, logs, images and deployment documents have been removed from the current tree because the Android project does not use them. Upstream Git history and attribution remain available. The Android compatibility adapters are part of the embedded implementation.
 
 ## Android snapshot
 
@@ -18,7 +18,7 @@ The imported baseline is `20261029-gameplay-r38`: **196 production Java sources*
 
 Read the [Android overview](android-local/README.md), [build instructions](android-local/docs/BUILDING.md), [attributions](android-local/docs/ATTRIBUTIONS.md) and [licensing notes](android-local/docs/LICENSING.md).
 
-The Android import adds source only: no APK/AAB releases, dependency JARs, game resources, accounts, saves, database snapshots, certificates or signing keys. The inherited compiled server JAR is removed from the current tree; Git history is preserved. Other pre-existing upstream files are not certified by this import.
+The current tree contains source and project documentation only: no APK/AAB releases, dependency JARs, game-data corpus, accounts, saves, database snapshots, certificates or signing keys. Git history is preserved and may contain removed upstream data and release files.
 
 ## Status
 
