@@ -1,0 +1,323 @@
+package com.hypergryph.arknights.game;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.hypergryph.arknights.ArknightsApplication;
+import com.hypergryph.arknights.core.dao.userDao;
+import com.hypergryph.arknights.core.platform.PlatformResolver;
+import com.hypergryph.arknights.core.pojo.Account;
+
+import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import static com.hypergryph.arknights.core.work.checkAccount.checkAccount;
+import static com.hypergryph.arknights.core.work.checkAccount.createError;
+import static com.hypergryph.arknights.core.work.checkActLogin.needAddIndex;
+import static com.hypergryph.arknights.core.work.checkActLogin.needResetIndex;
+import static com.hypergryph.arknights.core.work.checkCanCheckIn.canCheckIn;
+import static com.hypergryph.arknights.core.work.checkNeedChangeGroup.needChange;
+import static com.hypergryph.arknights.core.work.checkNeedChangeGroup.nextGroupId;
+
+@RestController
+@RequestMapping({"/account"})
+public class account {
+    private static final Logger LOGGER = LogManager.getLogger();
+
+    public account() {
+    }
+
+    @PostMapping(
+            value = {"/login"},
+            produces = {"application/json; charset=utf-8"}
+    )
+    public JSONObject Login(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        LOGGER.info("[/" + clientIp + "] /account/login");
+        String secret = JsonBody.getString("token");
+        String assetsVersion = JsonBody.getString("assetsVersion");
+        String clientVersion = JsonBody.getString("clientVersion");
+        JSONObject versions = ArknightsApplication.serverConfig.getJSONObject("version");
+        PlatformResolver.Platform platform =
+                PlatformResolver.resolveLoginPlatform(JsonBody, request, versions);
+        PlatformResolver.LoginVersionStatus versionStatus =
+                PlatformResolver.checkLoginVersions(
+                        versions,
+                        platform,
+                        clientVersion,
+                        assetsVersion);
+        LOGGER.info("Resolved login platform: {}", platform.protocolName());
+        List<Account> Accounts = userDao.queryAccountBySecret(secret);
+        if (checkAccount(secret)) {
+            Long uid = ((Account) Accounts.get(0)).getUid();
+            JSONObject result;
+            if (versionStatus == PlatformResolver.LoginVersionStatus.CLIENT_MISMATCH) {
+                result = new JSONObject(true);
+                result.put("result", 2);
+                result.put("error", "客户端版本需要更新");
+                return result;
+            } else if (versionStatus == PlatformResolver.LoginVersionStatus.RESOURCE_MISMATCH) {
+                result = new JSONObject(true);
+                result.put("result", 4);
+                result.put("error", "资源需要更新");
+                return result;
+            } else {
+                if (((Account) Accounts.get(0)).getUser().equals("{}")) {
+                    // Deep copy: never mutate the shared DefaultSyncData template another account reads next.
+                    JSONObject userData = JSON.parseObject(JSON.toJSONString(
+                            ArknightsApplication.DefaultSyncData, SerializerFeature.WriteMapNullValue));
+                    long now = (new Date()).getTime() / 1000L;
+                    userData.getJSONObject("status").put("uid", uid);
+                    userData.getJSONObject("status").put("registerTs", now);
+                    userData.getJSONObject("status").put("lastApAddTime", now);
+                    userDao.setUserData(uid, userData);
+                }
+                ArknightsApplication.addSecretForIP(clientIp, secret);
+                LoginNoticeSupport.beginSession(secret);
+                Map<String, Object> data = new LinkedHashMap<>();
+                data.put("result", 0);
+                data.put("uid", uid);
+                data.put("secret", secret);
+                data.put("serviceLicenseVersion", 0);
+
+                result = new JSONObject(true);
+                result.put("data", data);
+
+                return result;
+            }
+        }
+        else {
+            createError(secret, response);
+        }
+        return new JSONObject(true);
+    }
+
+    @PostMapping(
+            value = {"/syncData"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject SyncData(HttpServletRequest request,
+                               HttpServletResponse response) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        LOGGER.info("[/" + clientIp + "] /account/syncData");
+        String secret = ArknightsApplication.getSecretByIP(clientIp);
+        long uid = userDao.queryUidBySecret(secret);
+        if (checkAccount(secret)) {
+            // **查询数据库**
+            List<Account> accounts = userDao.queryAccountBySecret(secret);
+            // **获取用户数据**
+            Account user = accounts.get(0);
+            // **解析用户数据**
+            JSONObject UserSyncData;
+            try {
+                UserSyncData = JSONObject.parseObject(user.getUser());
+                if (UserSyncData == null) {
+                    throw new Exception("解析用户数据失败");
+                }
+            } catch (Exception e) {
+                LOGGER.error("解析用户数据失败, UID: " + uid, e);
+                return createErrorResponse(2, "用户数据损坏");
+            }
+
+            Long ts = ArknightsApplication.getTimestamp();
+            com.codex.arklocal.LocalSaveMigrations.repairSandboxSave(UserSyncData);
+            SandboxProgressSupport.normalizeStoryDifficulty(UserSyncData);
+            RogueSupport.normalizeZoneIndexes(UserSyncData);
+            EquipmentSupport.normalize(UserSyncData);
+            LocalCosmeticSupport.normalize(UserSyncData, ts);
+            CharRotationSupport.normalize(UserSyncData);
+            CurrentActivitySupport.normalize(UserSyncData, com.codex.arklocal.BackendPaths.rootFile(), ts);
+            MissionProgressSupport.normalize(UserSyncData, ts);
+            MainlineProgressionSupport.normalize(UserSyncData, ArknightsApplication.stageTable,
+                    ArknightsApplication.mainStage);
+            CampaignProgressionSupport.normalize(UserSyncData, ArknightsApplication.stageTable);
+            RecalRuneSupport.normalize(UserSyncData);
+            TowerSeasonSupport.ensure(UserSyncData,CharacterBuildingSupport.table("excel/climb_tower_table.json"));
+            TowerTrainingSupport.normalize(UserSyncData);
+            BaseRoomRuntimeSupport.mutate(UserSyncData,
+                    CharacterBuildingSupport.table("excel/building_data.json"), ts);
+            BaseStaffRuntimeSupport.advance(UserSyncData,
+                    CharacterBuildingSupport.table("excel/building_data.json"), ts);
+            TrainingSkillSupport.advance(UserSyncData, ts);
+            NewCreditSupport.settle(UserSyncData,CharacterBuildingSupport.table("excel/building_data.json"),ts);
+            Long lastLogin = UserSyncData.getJSONObject("status").getLong("lastOnlineTs");
+            ;
+            boolean canCheck = canCheckIn(lastLogin, ts);
+            if (canCheck) {
+                if (UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").getBoolean("isAvailable")) {
+                    int index = UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").getInteger("nowIndex");
+                    JSONArray history = UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").getJSONArray("history");
+                    boolean indexAdd = needAddIndex(lastLogin, index, history);
+                    boolean resetIndex = needResetIndex(lastLogin);
+                    if (indexAdd) {
+                        UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").put("nowIndex", index + 1);
+                        UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").getJSONArray("history").add(1);
+                    } else {
+                        if (UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").getJSONArray("history") == null || UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").getJSONArray("history").isEmpty()) {
+                            UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").getJSONArray("history").add(1);
+                        }
+                    }
+                    if (resetIndex) {
+                        UserSyncData.getJSONObject("openServer").getJSONObject("chainLogin").put("nowIndex", 0);
+                    }
+                }
+                if (UserSyncData.getJSONObject("openServer").getJSONObject("checkIn").getBoolean("isAvailable")) {
+                    JSONArray history = UserSyncData.getJSONObject("openServer").getJSONObject("checkIn").getJSONArray("history");
+                    boolean hasOne = false;
+                    if (history != null) {
+                        for (int i = 0; i < history.size(); i++) {
+                            Integer v = history.getInteger(i);
+                            if (v != null && v == 1) {
+                                hasOne = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!hasOne) {
+                        UserSyncData.getJSONObject("openServer").getJSONObject("checkIn").getJSONArray("history").add(1);
+                    }
+                }
+            }
+            if (canCheck) {
+                UserSyncData.getJSONObject("checkIn").put("canCheckIn", 1);
+            }
+            UserSyncData.getJSONObject("status").put("lastOnlineTs", System.currentTimeMillis() / 1000L);
+            UserSyncData.getJSONObject("status").put("lastRefreshTs", ts);
+            String id = UserSyncData.getJSONObject("checkIn").getString("checkInGroupId");
+            boolean needChange = needChange(lastLogin, ts);
+            if (needChange) {
+                String next_id = nextGroupId(id);
+                UserSyncData.getJSONObject("checkIn").put("checkInGroupId", next_id);
+            }
+
+            try {
+                userDao.setUserData(uid, UserSyncData);
+            } catch (Exception e) {
+                LOGGER.error("写入用户数据失败, UID: " + uid, e);
+                return createErrorResponse(2, "数据存储失败");
+            }
+
+            JSONObject result = new JSONObject(true);
+            JSONObject playerDataDelta = new JSONObject(true);
+            playerDataDelta.put("deleted", new JSONObject(true));  // 空对象而非null
+            playerDataDelta.put("modified", new JSONObject(true)); // 空对象而非null
+            result.put("playerDataDelta", playerDataDelta);
+            result.put("result", 0);
+            result.put("ts", ts);
+            result.put("user", UserSyncData);
+            LOGGER.info("用户数据同步成功, UID: " + uid);
+            return result;
+        }
+        return new JSONObject();
+    }
+
+    private JSONObject createErrorResponse(int code, String message) {
+        JSONObject result = new JSONObject(true);
+        result.put("result", code);
+        result.put("error", message);
+        return result;
+    }
+
+    @PostMapping(
+            value = {"/syncStatus"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject SyncStatus(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        LOGGER.info("[/" + clientIp + "] /account/syncStatus");
+        LOGGER.info("SyncS" + JsonBody);
+        String secret = ArknightsApplication.getSecretByIP(clientIp);
+        if (!ArknightsApplication.enableServer) {
+            response.setStatus(400);
+            JSONObject result = new JSONObject(true);
+            result.put("statusCode", 400);
+            result.put("error", "Bad Request");
+            result.put("message", "server is close");
+            return result;
+        } else {
+            List<Account> Accounts = userDao.queryAccountBySecret(secret);
+            if (Accounts.size() != 1) {
+                JSONObject result = new JSONObject(true);
+                result.put("result", 2);
+                result.put("error", "无法查询到此账户");
+                return result;
+            } else {
+                Long uid = ((Account) Accounts.get(0)).getUid();
+                JSONObject UserSyncData;
+                if (((Account) Accounts.get(0)).getBan() == 1L) {
+                    response.setStatus(500);
+                    UserSyncData = new JSONObject(true);
+                    UserSyncData.put("statusCode", 403);
+                    UserSyncData.put("error", "Bad Request");
+                    UserSyncData.put("message", "error");
+                    return UserSyncData;
+                } else {
+                    UserSyncData = JSONObject.parseObject(((Account) Accounts.get(0)).getUser());
+                    UserSyncData.getJSONObject("status").put("lastOnlineTs", (new Date()).getTime() / 1000L);
+                    UserSyncData.getJSONObject("status").put("lastRefreshTs", ArknightsApplication.getTimestamp());
+                    UserSyncData.getJSONObject("pushFlags").put("hasGifts", 0);
+                    UserSyncData.getJSONObject("pushFlags").put("hasFriendRequest", 0);
+                    JSONArray listMailBox = JSONArray.parseArray(((Account) Accounts.get(0)).getMails());
+
+                    for (int i = 0; i < listMailBox.size(); ++i) {
+                        if (listMailBox.getJSONObject(i).getIntValue("state") == 0) {
+                            if ((new Date()).getTime() / 1000L <= listMailBox.getJSONObject(i).getLongValue("expireAt")) {
+                                UserSyncData.getJSONObject("pushFlags").put("hasGifts", 1);
+                                break;
+                            }
+
+                            listMailBox.getJSONObject(i).put("remove", 1);
+                        }
+                    }
+
+                    JSONArray FriendRequest = JSONObject.parseObject(((Account) Accounts.get(0)).getFriend()).getJSONArray("request");
+                    if (FriendRequest.size() != 0) {
+                        UserSyncData.getJSONObject("pushFlags").put("hasFriendRequest", 1);
+                    }
+
+                    userDao.setMailsData(uid, listMailBox);
+                    userDao.setUserData(uid, UserSyncData);
+                    JSONObject result = new JSONObject(true);
+                    JSONObject playerDataDelta = new JSONObject(true);
+                    JSONObject modified = new JSONObject(true);
+                    modified.put("status", UserSyncData.getJSONObject("status"));
+                    modified.put("gacha", UserSyncData.getJSONObject("gacha"));
+                    modified.put("inventory", UserSyncData.getJSONObject("inventory"));
+                    modified.put("pushFlags", UserSyncData.getJSONObject("pushFlags"));
+                    modified.put("consumable", UserSyncData.getJSONObject("consumable"));
+                    modified.put("rlv2", UserSyncData.getJSONObject("rlv2"));
+                    playerDataDelta.put("modified", modified);
+                    playerDataDelta.put("deleted", new JSONObject(true));
+                    result.put("playerDataDelta", playerDataDelta);
+                    JSONObject result_announcement = new JSONObject(true);
+                    result.put("result", result_announcement);
+                    return result;
+                }
+            }
+        }
+    }
+
+    @PostMapping(
+            value = {"/syncPushMessage"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject SyncPushMessage(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        LOGGER.info("[/" + clientIp + "] /account/syncStatus");
+        LOGGER.info("syncPM:" + JsonBody);
+        JSONObject result = new JSONObject();
+        JSONObject playerDataDelta = new JSONObject();
+        playerDataDelta.put("modified", new JSONObject());
+        playerDataDelta.put("deleted", new JSONObject());
+        result.put("playerDataDelta", playerDataDelta);
+        return result;
+    }
+}

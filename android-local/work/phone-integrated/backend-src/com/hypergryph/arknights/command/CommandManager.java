@@ -1,0 +1,9 @@
+package com.hypergryph.arknights.command;
+
+public class CommandManager extends CommandHandler {
+    public CommandManager() {
+        this.registerCommand(new CommandHelp());
+        this.registerCommand(new CommandAddD());
+        this.registerCommand(new CommandCreateAC());
+    }
+}

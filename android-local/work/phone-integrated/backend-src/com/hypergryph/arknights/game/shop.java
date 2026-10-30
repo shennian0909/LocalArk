@@ -1,0 +1,551 @@
+package com.hypergryph.arknights.game;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.hypergryph.arknights.Admin;
+import com.hypergryph.arknights.ArknightsApplication;
+import com.hypergryph.arknights.core.dao.userDao;
+import com.hypergryph.arknights.core.pojo.Account;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping({"/shop"})
+public class shop {
+    public shop() {
+    }
+
+    @PostMapping(
+            value = {"/getSkinGoodList"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject getSkinGoodList(@RequestBody JSONObject JsonBody) {
+        JSONArray charIdList = JsonBody.getJSONArray("charIdList");
+        JSONArray goodList = new JSONArray();
+        if (charIdList.size() == 0) {
+            return ArknightsApplication.skinGoodList;
+        } else {
+            Iterator var4 = ArknightsApplication.skinTable.entrySet().iterator();
+
+            while(var4.hasNext()) {
+                Map.Entry<String, Object> entry = (Map.Entry)var4.next();
+                String skinId = (String)entry.getKey();
+                if (skinId.indexOf(charIdList.getString(0)) != -1 && skinId.indexOf("@") != -1) {
+                    JSONObject SkinData = ArknightsApplication.skinTable.getJSONObject(skinId);
+                    JSONObject SkinGood = new JSONObject(true);
+                    SkinGood.put("charId", SkinData.getString("charId"));
+                    SkinGood.put("skinId", SkinData.getString("skinId"));
+                    SkinGood.put("goodId", "SS_" + SkinData.getString("skinId"));
+                    SkinGood.put("slotId", SkinData.getJSONObject("displaySkin").getIntValue("sortId"));
+                    SkinGood.put("skinName", SkinData.getJSONObject("displaySkin").getString("skinName"));
+                    SkinGood.put("discount", 0);
+                    SkinGood.put("originPrice", 18);
+                    SkinGood.put("price", 18);
+                    SkinGood.put("startDateTime", -1);
+                    SkinGood.put("endDateTime", -1);
+                    SkinGood.put("desc1", (Object)null);
+                    SkinGood.put("desc2", (Object)null);
+                    SkinGood.put("currencyUnit", "DIAMOND");
+                    goodList.add(SkinGood);
+                }
+            }
+
+            JSONObject result = new JSONObject(true);
+            JSONObject playerDataDelta = new JSONObject(true);
+            playerDataDelta.put("modified", new JSONObject(true));
+            playerDataDelta.put("deleted", new JSONObject(true));
+            result.put("playerDataDelta", playerDataDelta);
+            result.put("goodList", goodList);
+            return result;
+        }
+    }
+
+    @PostMapping(
+            value = {"/buySkinGood"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject buySkinGood(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        ArknightsApplication.LOGGER.info("[/" + clientIp + "] /shop/buySkinGood");
+        String secret = ArknightsApplication.getSecretByIP(clientIp);
+        if (!ArknightsApplication.enableServer) {
+            response.setStatus(400);
+            JSONObject result = new JSONObject(true);
+            result.put("statusCode", 400);
+            result.put("error", "Bad Request");
+            result.put("message", "server is close");
+            return result;
+        } else {
+            String goodId = JsonBody.getString("goodId");
+            List<Account> Accounts = userDao.queryAccountBySecret(secret);
+            if (Accounts.size() != 1) {
+                JSONObject result = new JSONObject(true);
+                result.put("result", 2);
+                result.put("error", "无法查询到此账户");
+                return result;
+            } else {
+                Long uid = ((Account)Accounts.get(0)).getUid();
+                JSONObject UserSyncData;
+                if (((Account)Accounts.get(0)).getBan() == 1L) {
+                    response.setStatus(500);
+                    UserSyncData = new JSONObject(true);
+                    UserSyncData.put("statusCode", 403);
+                    UserSyncData.put("error", "Bad Request");
+                    UserSyncData.put("message", "error");
+                    return UserSyncData;
+                } else {
+                    UserSyncData = JSONObject.parseObject(((Account)Accounts.get(0)).getUser());
+                    UserSyncData.getJSONObject("skin").getJSONObject("characterSkins").put(goodId.substring(3), 1);
+                    UserSyncData.getJSONObject("skin").getJSONObject("skinTs").put(goodId.substring(3), (new Date()).getTime() / 1000L);
+                    UserSyncData.getJSONObject("status").put("androidDiamond", UserSyncData.getJSONObject("status").getIntValue("androidDiamond") - 18);
+                    UserSyncData.getJSONObject("status").put("iosDiamond", UserSyncData.getJSONObject("status").getIntValue("iosDiamond") - 18);
+                    userDao.setUserData(uid, UserSyncData);
+                    JSONObject result = new JSONObject(true);
+                    JSONObject playerDataDelta = new JSONObject(true);
+                    JSONObject modified = new JSONObject(true);
+                    JSONObject status = new JSONObject(true);
+                    status.put("androidDiamond", UserSyncData.getJSONObject("status").getIntValue("androidDiamond"));
+                    status.put("iosDiamond", UserSyncData.getJSONObject("status").getIntValue("iosDiamond"));
+                    modified.put("skin", UserSyncData.getJSONObject("skin"));
+                    modified.put("status", status);
+                    playerDataDelta.put("deleted", new JSONObject(true));
+                    playerDataDelta.put("modified", modified);
+                    result.put("playerDataDelta", playerDataDelta);
+                    result.put("result", 0);
+                    return result;
+                }
+            }
+        }
+    }
+
+    @PostMapping(
+            value = {"/buyLowGood"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject buyLowGood(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        ArknightsApplication.LOGGER.info("[/" + clientIp + "] /shop/buyLowGood");
+        String secret = ArknightsApplication.getSecretByIP(clientIp);
+        if (!ArknightsApplication.enableServer) {
+            response.setStatus(400);
+            JSONObject result = new JSONObject(true);
+            result.put("statusCode", 400);
+            result.put("error", "Bad Request");
+            result.put("message", "server is close");
+            return result;
+        } else {
+            String goodId = JsonBody.getString("goodId");
+            int count = JsonBody.getIntValue("count");
+            List<Account> Accounts = userDao.queryAccountBySecret(secret);
+            if (Accounts.size() != 1) {
+                JSONObject result = new JSONObject(true);
+                result.put("result", 2);
+                result.put("error", "无法查询到此账户");
+                return result;
+            } else {
+                Long uid = ((Account)Accounts.get(0)).getUid();
+                JSONObject UserSyncData;
+                if (((Account)Accounts.get(0)).getBan() == 1L) {
+                    response.setStatus(500);
+                    UserSyncData = new JSONObject(true);
+                    UserSyncData.put("statusCode", 403);
+                    UserSyncData.put("error", "Bad Request");
+                    UserSyncData.put("message", "error");
+                    return UserSyncData;
+                } else {
+                    UserSyncData = JSONObject.parseObject(((Account)Accounts.get(0)).getUser());
+                    JSONArray items = new JSONArray();
+
+                    JSONObject lowGood;
+                    for(int i = 0; i < ArknightsApplication.LowGoodList.getJSONArray("goodList").size(); ++i) {
+                        lowGood = ArknightsApplication.LowGoodList.getJSONArray("goodList").getJSONObject(i);
+                        if (lowGood.getString("goodId").equals(goodId)) {
+                            UserSyncData.getJSONObject("status").put("lggShard", UserSyncData.getJSONObject("status").getIntValue("lggShard") - lowGood.getIntValue("price") * count);
+                            String reward_id = lowGood.getJSONObject("item").getString("id");
+                            String reward_type = lowGood.getJSONObject("item").getString("type");
+                            int reward_count = lowGood.getJSONObject("item").getIntValue("count") * count;
+                            Admin.GM_GiveItem(UserSyncData, reward_id, reward_type, reward_count, items);
+                            break;
+                        }
+                    }
+                    // Low certificates are one of the three zones the type-0 BuyShopItem task names.
+                    JSONObject missionBefore = CharacterBuildingSupport.copy(UserSyncData.getJSONObject("mission"));
+                    boolean lowMissionChanged = MissionProgressSupport.onAction(UserSyncData, "certificatePurchase", new JSONObject(),
+                            System.currentTimeMillis() / 1000L);
+                    userDao.setUserData(uid, UserSyncData);
+                    JSONObject result = new JSONObject(true);
+                    lowGood = new JSONObject(true);
+                    JSONObject modified = new JSONObject(true);
+                    modified.put("skin", UserSyncData.getJSONObject("skin"));
+                    modified.put("status", UserSyncData.getJSONObject("status"));
+                    modified.put("shop", UserSyncData.getJSONObject("shop"));
+                    modified.put("troop", UserSyncData.getJSONObject("troop"));
+                    modified.put("skin", UserSyncData.getJSONObject("skin"));
+                    modified.put("inventory", UserSyncData.getJSONObject("inventory"));
+                    lowGood.put("deleted", new JSONObject(true));
+                    lowGood.put("modified", modified);
+                    result.put("playerDataDelta", lowGood);
+                    if (lowMissionChanged) MissionProgressSupport.writeDelta(UserSyncData, lowGood, missionBefore);
+                    result.put("items", items);
+                    result.put("result", 0);
+                    return result;
+                }
+            }
+        }
+    }
+
+    @PostMapping(
+            value = {"/buyHighGood"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject buyHighGood(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        return ShopTransactionSupport.execute(response, request,
+                user -> ShopTransactionSupport.buyHigh(user, JsonBody, ArknightsApplication.HighGoodList));
+    }
+
+    @PostMapping(value = "/buyClassicGood", produces = "application/json;charset=UTF-8")
+    public JSONObject buyClassicGood(@RequestBody JSONObject body, HttpServletResponse response,
+                                     HttpServletRequest request) {
+        return ShopTransactionSupport.execute(response, request,
+                user -> ShopTransactionSupport.buyClassic(user, body, ClassicShopCatalog.catalog()));
+    }
+
+    @PostMapping(value = "/buySocialGood", produces = "application/json;charset=UTF-8")
+    public JSONObject buySocialGood(@RequestBody JSONObject body, HttpServletResponse response, HttpServletRequest request) {
+        return ShopTransactionSupport.execute(response, request,
+                user -> ShopTransactionSupport.buySocial(user, body, ArknightsApplication.SocialGoodList));
+    }
+
+    @PostMapping(
+            value = {"/buyExtraGood"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject buyExtraGood(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        ArknightsApplication.LOGGER.info("[/" + clientIp + "] /shop/buyExtraGood");
+        String secret = ArknightsApplication.getSecretByIP(clientIp);
+        if (!ArknightsApplication.enableServer) {
+            response.setStatus(400);
+            JSONObject result = new JSONObject(true);
+            result.put("statusCode", 400);
+            result.put("error", "Bad Request");
+            result.put("message", "server is close");
+            return result;
+        } else {
+            String goodId = JsonBody.getString("goodId");
+            int count = JsonBody.getIntValue("count");
+            List<Account> Accounts = userDao.queryAccountBySecret(secret);
+            if (Accounts.size() != 1) {
+                JSONObject result = new JSONObject(true);
+                result.put("result", 2);
+                result.put("error", "无法查询到此账户");
+                return result;
+            } else {
+                Long uid = ((Account)Accounts.get(0)).getUid();
+                JSONObject UserSyncData;
+                if (((Account)Accounts.get(0)).getBan() == 1L) {
+                    response.setStatus(500);
+                    UserSyncData = new JSONObject(true);
+                    UserSyncData.put("statusCode", 403);
+                    UserSyncData.put("error", "Bad Request");
+                    UserSyncData.put("message", "error");
+                    return UserSyncData;
+                } else {
+                    UserSyncData = JSONObject.parseObject(((Account)Accounts.get(0)).getUser());
+                    JSONArray items = new JSONArray();
+
+                    JSONObject ExtraGood;
+                    for(int i = 0; i < ArknightsApplication.ExtraGoodList.getJSONArray("goodList").size(); ++i) {
+                        ExtraGood = ArknightsApplication.ExtraGoodList.getJSONArray("goodList").getJSONObject(i);
+                        if (ExtraGood.getString("goodId").equals(goodId)) {
+                            UserSyncData.getJSONObject("inventory").put("4006", UserSyncData.getJSONObject("inventory").getIntValue("4006") - ExtraGood.getIntValue("price") * count);
+                            String reward_id = ExtraGood.getJSONObject("item").getString("id");
+                            String reward_type = ExtraGood.getJSONObject("item").getString("type");
+                            int reward_count = ExtraGood.getJSONObject("item").getIntValue("count") * count;
+                            Admin.GM_GiveItem(UserSyncData, reward_id, reward_type, reward_count, items);
+                            break;
+                        }
+                    }
+                    // Procurement certificates (4006) are the third zone the type-0 task names.
+                    JSONObject missionBefore = CharacterBuildingSupport.copy(UserSyncData.getJSONObject("mission"));
+                    boolean extraMissionChanged = MissionProgressSupport.onAction(UserSyncData, "certificatePurchase", new JSONObject(),
+                            System.currentTimeMillis() / 1000L);
+                    userDao.setUserData(uid, UserSyncData);
+                    JSONObject result = new JSONObject(true);
+                    ExtraGood = new JSONObject(true);
+                    JSONObject modified = new JSONObject(true);
+                    modified.put("skin", UserSyncData.getJSONObject("skin"));
+                    modified.put("status", UserSyncData.getJSONObject("status"));
+                    modified.put("shop", UserSyncData.getJSONObject("shop"));
+                    modified.put("troop", UserSyncData.getJSONObject("troop"));
+                    modified.put("skin", UserSyncData.getJSONObject("skin"));
+                    modified.put("inventory", UserSyncData.getJSONObject("inventory"));
+                    ExtraGood.put("deleted", new JSONObject(true));
+                    ExtraGood.put("modified", modified);
+                    result.put("playerDataDelta", ExtraGood);
+                    if (extraMissionChanged) MissionProgressSupport.writeDelta(UserSyncData, ExtraGood, missionBefore);
+                    result.put("items", items);
+                    result.put("result", 0);
+                    return result;
+                }
+            }
+        }
+    }
+
+    @PostMapping(
+            value = {"/decomposePotentialItem"},
+            produces = {"application/json;charset=UTF-8"}
+    )
+    public JSONObject decomposePotentialItem(@RequestBody JSONObject JsonBody, HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        ArknightsApplication.LOGGER.info("[/" + clientIp + "] /shop/decomposePotentialItem");
+        String secret = ArknightsApplication.getSecretByIP(clientIp);
+        if (!ArknightsApplication.enableServer) {
+            response.setStatus(400);
+            JSONObject result = new JSONObject(true);
+            result.put("statusCode", 400);
+            result.put("error", "Bad Request");
+            result.put("message", "server is close");
+            return result;
+        } else {
+            JSONArray charInstIdList = JsonBody.getJSONArray("charInstIdList");
+            List<Account> Accounts = userDao.queryAccountBySecret(secret);
+            if (Accounts.size() != 1) {
+                JSONObject result = new JSONObject(true);
+                result.put("result", 2);
+                result.put("error", "无法查询到此账户");
+                return result;
+            } else {
+                Long uid = ((Account)Accounts.get(0)).getUid();
+                JSONObject UserSyncData;
+                if (((Account)Accounts.get(0)).getBan() == 1L) {
+                    response.setStatus(500);
+                    UserSyncData = new JSONObject(true);
+                    UserSyncData.put("statusCode", 403);
+                    UserSyncData.put("error", "Bad Request");
+                    UserSyncData.put("message", "error");
+                    return UserSyncData;
+                } else {
+                    UserSyncData = JSONObject.parseObject(((Account)Accounts.get(0)).getUser());
+                    JSONArray itemGet = new JSONArray();
+
+                    JSONObject status;
+                    for(int i = 0; i < charInstIdList.size(); ++i) {
+                        int lggShard = UserSyncData.getJSONObject("status").getIntValue("lggShard");
+                        int hggShard = UserSyncData.getJSONObject("status").getIntValue("hggShard");
+                        status = UserSyncData.getJSONObject("troop").getJSONObject("chars").getJSONObject(String.valueOf(charInstIdList.get(i)));
+                        String CharId = status.getString("charId");
+                        int pcount = UserSyncData.getJSONObject("inventory").getIntValue("p_" + CharId);
+                        UserSyncData.getJSONObject("inventory").put("p_" + CharId, 0);
+                        int rarity = ArknightsApplication.characterJson.getJSONObject(CharId).getIntValue("rarity");
+                        JSONObject item = new JSONObject(true);
+                        if (rarity == 0) {
+                            item.put("type", "LGG_SHD");
+                            item.put("id", "4005");
+                            item.put("count", pcount * 1);
+                            itemGet.add(item);
+                            UserSyncData.getJSONObject("status").put("lggShard", lggShard + pcount * 1);
+                        } else if (rarity == 1) {
+                            item.put("type", "LGG_SHD");
+                            item.put("id", "4005");
+                            item.put("count", pcount * 1);
+                            itemGet.add(item);
+                            UserSyncData.getJSONObject("status").put("lggShard", lggShard + pcount * 1);
+                        } else if (rarity == 2) {
+                            item.put("type", "LGG_SHD");
+                            item.put("id", "4005");
+                            item.put("count", pcount * 5);
+                            itemGet.add(item);
+                            UserSyncData.getJSONObject("status").put("lggShard", lggShard + pcount * 5);
+                        } else if (rarity == 3) {
+                            item.put("type", "HGG_SHD");
+                            item.put("id", "4004");
+                            item.put("count", pcount * 1);
+                            itemGet.add(item);
+                            UserSyncData.getJSONObject("status").put("hggShard", hggShard + pcount * 1);
+                        } else if (rarity == 4) {
+                            item.put("type", "HGG_SHD");
+                            item.put("id", "4004");
+                            item.put("count", pcount * 5);
+                            itemGet.add(item);
+                            UserSyncData.getJSONObject("status").put("hggShard", hggShard + pcount * 5);
+                        } else if (rarity == 5) {
+                            item.put("type", "HGG_SHD");
+                            item.put("id", "4004");
+                            item.put("count", pcount * 10);
+                            itemGet.add(item);
+                            UserSyncData.getJSONObject("status").put("hggShard", hggShard + pcount * 10);
+                        }
+                    }
+
+                    userDao.setUserData(uid, UserSyncData);
+                    JSONObject result = new JSONObject(true);
+                    JSONObject playerDataDelta = new JSONObject(true);
+                    JSONObject modified = new JSONObject(true);
+                    status = new JSONObject(true);
+                    status.put("lggShard", UserSyncData.getJSONObject("status").getIntValue("lggShard"));
+                    status.put("hggShard", UserSyncData.getJSONObject("status").getIntValue("hggShard"));
+                    modified.put("status", status);
+                    modified.put("inventory", UserSyncData.getJSONObject("inventory"));
+                    playerDataDelta.put("modified", modified);
+                    playerDataDelta.put("deleted", new JSONObject(true));
+                    result.put("items", itemGet);
+                    result.put("playerDataDelta", playerDataDelta);
+                    result.put("result", 0);
+                    return result;
+                }
+            }
+        }
+    }
+
+    @RequestMapping({"/getGoodPurchaseState"})
+    public JSONObject getGoodPurchaseState() {
+        JSONObject result = new JSONObject(true);
+        JSONObject playerDataDelta = new JSONObject(true);
+        playerDataDelta.put("modified", new JSONObject(true));
+        playerDataDelta.put("deleted", new JSONObject(true));
+        result.put("playerDataDelta", playerDataDelta);
+        result.put("result", new JSONObject(true));
+        return result;
+    }
+
+    @RequestMapping({"/getCashGoodList"})
+    public JSONObject getCashGoodList() {
+        JSONObject result = new JSONObject();
+        JSONArray CashGoodList = ArknightsApplication.CashGoodList;
+        result.put("goodList", CashGoodList);
+        JSONObject playerDataDelta = new JSONObject();
+        playerDataDelta.put("modified", new JSONObject());
+        playerDataDelta.put("deleted", new JSONObject());
+        result.put("playerDataDelta", playerDataDelta);
+        return result;
+    }
+
+    @RequestMapping({"/getGPGoodList"})
+    public JSONObject getGPGoodList() {
+        return ArknightsApplication.GPGoodList;
+    }
+
+    @RequestMapping({"/getLowGoodList"})
+    public JSONObject getLowGoodList() {
+        return ArknightsApplication.LowGoodList;
+    }
+
+    @RequestMapping({"/getHighGoodList"})
+    public JSONObject getHighGoodList(HttpServletResponse response, HttpServletRequest request) {
+        return getProgressGoodList("HS", response, request);
+    }
+
+    @PostMapping(value = "/getClassicGoodList", produces = "application/json;charset=UTF-8")
+    public JSONObject getClassicGoodList(HttpServletResponse response, HttpServletRequest request) {
+        return getProgressGoodList("CLASSIC", response, request);
+    }
+
+    private JSONObject getProgressGoodList(String shopType, HttpServletResponse response,
+                                          HttpServletRequest request) {
+        if (!ArknightsApplication.enableServer) {
+            response.setStatus(400);
+            return ShopTransactionSupport.error("server is close");
+        }
+        String secret = ArknightsApplication.getSecretByIP(ArknightsApplication.getIpAddr(request));
+        if (secret == null || secret.isEmpty()) return ShopTransactionSupport.error("account not found");
+        List<Account> accounts = userDao.queryAccountBySecret(secret);
+        if (accounts == null || accounts.size() != 1)
+            return ShopTransactionSupport.error("account not found");
+        Account account = accounts.get(0);
+        if (account.getBan() == 1L) {
+            response.setStatus(403);
+            return ShopTransactionSupport.error("account banned");
+        }
+
+        JSONObject user = JSONObject.parseObject(account.getUser());
+        // HighGoodList is shared application data; never attach an account's delta to it.
+        JSONObject result = "HS".equals(shopType)
+                ? JSONObject.parseObject(ArknightsApplication.HighGoodList.toJSONString())
+                : ClassicShopCatalog.catalog();
+        if (ShopTransactionSupport.repairProgressTerminals(user, shopType, result)
+                && userDao.setUserData(account.getUid(), user) != 1)
+            return ShopTransactionSupport.error("account update failed");
+
+        JSONObject shops = user.getJSONObject("shop");
+        JSONObject state = shops == null ? null : shops.getJSONObject(shopType);
+        if (state != null) {
+            JSONObject boughtShop = new JSONObject(true);
+            boughtShop.put(shopType, state);
+            result.getJSONObject("playerDataDelta").getJSONObject("modified")
+                    .put("shop", boughtShop);
+        }
+        return result;
+    }
+
+    @RequestMapping({"/getExtraGoodList"})
+    public JSONObject getExtraGoodList() {
+        return ArknightsApplication.ExtraGoodList;
+    }
+
+    @RequestMapping({"/getLMTGSGoodList"})
+    public JSONObject getLMTGSGoodList() {
+        return ArknightsApplication.LMTGSGoodList;
+    }
+
+    @RequestMapping({"/getEPGSGoodList"})
+    public JSONObject getEPGSGoodList() {
+        return ArknightsApplication.EPGSGoodList;
+    }
+
+    @RequestMapping({"/getRepGoodList"})
+    public JSONObject getRepGoodList() {
+        return ArknightsApplication.RepGoodList;
+    }
+
+    @RequestMapping({"/getFurniGoodList"})
+    public JSONObject getFurniGoodList() {
+        return ArknightsApplication.FurniGoodList;
+    }
+
+    @RequestMapping({"/getSocialGoodList"})
+    public JSONObject getSocialGoodList(HttpServletResponse response, HttpServletRequest request) {
+        String clientIp = ArknightsApplication.getIpAddr(request);
+        String secret = ArknightsApplication.getSecretByIP(clientIp);
+        if (!ArknightsApplication.enableServer) {
+            response.setStatus(400);
+            return ShopTransactionSupport.error("server is close");
+        }
+        List<Account> accounts = userDao.queryAccountBySecret(secret);
+        if (accounts.size() != 1) return ShopTransactionSupport.error("account not found");
+        Account account = accounts.get(0);
+        if (account.getBan() == 1L) {
+            response.setStatus(403);
+            return ShopTransactionSupport.error("account banned");
+        }
+        JSONObject user = JSONObject.parseObject(account.getUser());
+        JSONObject result = JSONObject.parseObject(ArknightsApplication.SocialGoodList.toJSONString());
+        result.getJSONObject("playerDataDelta").getJSONObject("modified").getJSONObject("shop")
+                .put("SOCIAL", user.getJSONObject("shop").getJSONObject("SOCIAL"));
+        return result;
+    }
+    @PostMapping(value = "/buyFurniGood", produces = "application/json;charset=UTF-8")
+    public JSONObject buyFurniGood(@RequestBody JSONObject body, HttpServletResponse response, HttpServletRequest request) {
+        return ShopTransactionSupport.execute(response, request,
+                user -> ShopTransactionSupport.buyFurniture(user, body, ArknightsApplication.FurniGoodList));
+    }
+
+    @PostMapping(value = "/buyFurniGroup", produces = "application/json;charset=UTF-8")
+    public JSONObject buyFurniGroup(@RequestBody JSONObject body, HttpServletResponse response, HttpServletRequest request) {
+        return ShopTransactionSupport.execute(response, request,
+                user -> ShopTransactionSupport.buyFurnitureGroup(user, body, ArknightsApplication.FurniGoodList));
+    }
+
+    @PostMapping(value = "/buyGPGood", produces = "application/json;charset=UTF-8")
+    public JSONObject buyGPGood(@RequestBody JSONObject body, HttpServletResponse response, HttpServletRequest request) {
+        return ShopTransactionSupport.execute(response, request,
+                user -> ShopTransactionSupport.buyPack(user, body, ArknightsApplication.GPGoodList));
+    }
+
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "group": "com.google.guava",
+    "artifact": "failureaccess",
+    "version": "1.0.1",
+    "filename": "failureaccess-1.0.1.jar",
+    "sha256": "a171ee4c734dd2da837e4b16be9df4661afab72a41adaf31eb84dfdaf936ca26",
+    "url": "https://repo.maven.apache.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar"
+  },
+  {
+    "group": "com.alibaba",
+    "artifact": "fastjson",
+    "version": "1.2.83",
+    "filename": "fastjson-1.2.83.jar",
+    "sha256": "641a4d65ab32fbfdccd9c718e3f83ebc4caabdb5e4fe5b3d51527c5fe692631d",
+    "url": "https://repo.maven.apache.org/maven2/com/alibaba/fastjson/1.2.83/fastjson-1.2.83.jar"
+  },
+  {
+    "group": "com.google.code.gson",
+    "artifact": "gson",
+    "version": "2.8.9",
+    "filename": "gson-2.8.9.jar",
+    "sha256": "d3999291855de495c94c743761b8ab5176cfeabe281a5ab0d8e8d45326fd703e",
+    "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar"
+  },
+  {
+    "group": "com.google.guava",
+    "artifact": "guava",
+    "version": "32.0.1-android",
+    "filename": "guava-32.0.1-android.jar",
+    "sha256": "12429ff9ac33b7afd8b1a5071179757cf4d3c47f0f4099bc0384e644ecbf82dd",
+    "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.0.1-android/guava-32.0.1-android.jar"
+  },
+  {
+    "group": "org.nanohttpd",
+    "artifact": "nanohttpd",
+    "version": "2.3.1",
+    "filename": "nanohttpd-2.3.1.jar",
+    "sha256": "de864c47818157141a24c9acb36df0c47d7bf15b7ff48c90610f3eb4e5df0e58",
+    "url": "https://repo.maven.apache.org/maven2/org/nanohttpd/nanohttpd/2.3.1/nanohttpd-2.3.1.jar"
+  }
+]

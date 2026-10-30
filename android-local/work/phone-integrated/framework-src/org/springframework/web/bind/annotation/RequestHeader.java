@@ -1,0 +1,10 @@
+package org.springframework.web.bind.annotation;
+import java.lang.annotation.*;
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.PARAMETER})
+public @interface RequestHeader {
+    String value() default "";
+    String name() default "";
+    boolean required() default true;
+    String defaultValue() default ValueConstants.DEFAULT_NONE;
+}

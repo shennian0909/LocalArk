@@ -1,0 +1,1 @@
+package de.robv.android.xposed; public interface IXposedHookZygoteInit {void initZygote(StartupParam p) throws Throwable; public static final class StartupParam {public String modulePath;public boolean startsSystemServer;}}

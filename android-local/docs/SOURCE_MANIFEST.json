@@ -1,0 +1,1325 @@
+{
+  "baseline": "20261029-gameplay-r38",
+  "productionJavaSources": 196,
+  "upstream": {
+    "repository": "loongling/LocalArknights",
+    "baselineCommit": "fa251b4450a2c7f13d61d1c37c457c0651d14ba5",
+    "licenseObserved": null
+  },
+  "files": [
+    {
+      "path": "work/phone-integrated/backend-src/com/codex/arklocal/BackendPaths.java",
+      "bytes": 1126,
+      "sha256": "e49501277639f11e601df2d4dab3aca7d550dd7b48085ff2e89c2c3c9dfa441a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/codex/arklocal/ControllerRegistry.java",
+      "bytes": 3045,
+      "sha256": "8d145b52e6c74f9dee1f9b298585171b4c2a81a8a345b340866ad05a82732c1e",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/Admin.java",
+      "bytes": 42241,
+      "sha256": "82fe53622124c9467c626397834a96f9664443a53cac47f08c573e850fe508ad",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/announce/Android.java",
+      "bytes": 809,
+      "sha256": "4641ab782e1408faa4d4490eb49cde5ad3cb9d452fbbaa7baf610e92fd308928",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/app/api.java",
+      "bytes": 5140,
+      "sha256": "7b82490e3acc475f8a285c6baf725a0a137346827f2fcbef93fde7e29e7dced9",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/app/app.java",
+      "bytes": 5051,
+      "sha256": "bff4391fc28ddc846388e7af20de5846a5c03b57dc47f6fe1007319617ce9248",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/ArknightsApplication.java",
+      "bytes": 13586,
+      "sha256": "697988eb7ff6e80443232764c3846117610581de14032a5692bf8a6a3ed8f955",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/asset/official.java",
+      "bytes": 11319,
+      "sha256": "385e5c2175d5dcaedf658c356262509c488a58f3a5578e9a362f2c1b1cafadbe",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/auth/activity.java",
+      "bytes": 96,
+      "sha256": "091f3d86fad46c10c076cbb7bbae15d6748ad59c56f7adb4f636d5c15ec79bed",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/auth/captcha.java",
+      "bytes": 500,
+      "sha256": "a61adb150c92d634f1f0b913e39f34452a3bdae7dd5410e36493ba6ab67bb33c",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/auth/LocalAccountRegistration.java",
+      "bytes": 12215,
+      "sha256": "c2e705b8bb2f958bc81f97f9a0245e6fc07b8aafdf2b772774f02f731f9f741a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/auth/online.java",
+      "bytes": 881,
+      "sha256": "b431ce48f0406dce365d2bfbc36f25df3ccae0b9105d7cf420fb0f287e60bd77",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/auth/u8.java",
+      "bytes": 7449,
+      "sha256": "fdfe53c3b3f6257b38468acfc342294bc0c57a7805e59de8e30b0b3231526ac4",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/auth/user.java",
+      "bytes": 13316,
+      "sha256": "8eb7db298a3b2183bc0d85424803d537dfcb3a704cd51186e66da2b2b5fc1b56",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/CommandAddD.java",
+      "bytes": 3471,
+      "sha256": "4d05c7058dc8adc926cfed80d065421da4d9185576af755fc4a57b1f81d56af2",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/CommandBase.java",
+      "bytes": 420,
+      "sha256": "a67661d99737349412228097dbe34694ceb249146e21757d1c149c2436ac50df",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/CommandCreateAC.java",
+      "bytes": 3263,
+      "sha256": "7c8e9370eedbf22f7197ecb907c7f5c821996bd9e6131ac2fd2ca7b27f312fce",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/CommandException.java",
+      "bytes": 348,
+      "sha256": "df5a0ec36f9f86b46071f86296211e0b83ea398c0fe39ce3e2c54065a16b32aa",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/CommandHandler.java",
+      "bytes": 2455,
+      "sha256": "365d7369dd2d6ce6b31da0d8fdf3bced48dce9146ae131f5e4a7b6306c7f961b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/CommandHelp.java",
+      "bytes": 2263,
+      "sha256": "bfb4dbd26b187f27ccdb7e1e54a2f02478bf1ed94b4a0fbc3bee1bb9835f3c86",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/CommandManager.java",
+      "bytes": 284,
+      "sha256": "839628aed1492d1b77394c5768e6a7515acb8b261ae586f142862022c8c2a060",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/ICommand.java",
+      "bytes": 432,
+      "sha256": "d3a1c87a44307e5ed0d75e86e4b24f5e7635458d07f7a7947728bce4411cb4a8",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/ICommandManager.java",
+      "bytes": 326,
+      "sha256": "0c89add75aa3d53fe4978d388345b18937bb0496703ebe0b98772b63d49706a3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/command/ICommandSender.java",
+      "bytes": 100,
+      "sha256": "229f9391597873d1fc052b9f3cd4d1839f64b60f0b201b4a4fe5ac19b08cc116",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/config/prod.java",
+      "bytes": 5226,
+      "sha256": "e830e098473d9e4f6d5cc59f3ae86164bc42eba746d97877a860332ce9545d1a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/dao/mailDao.java",
+      "bytes": 4176,
+      "sha256": "304fcb0da63f7febb5539291d0cecea022b18bcc9ec4f4d32f8799a03409538a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/dao/orderIdDao.java",
+      "bytes": 4058,
+      "sha256": "89620dd98e21c2a4cd4b224be59058f3073535b114f82674b034b9e770ddbe90",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/dao/userDao.java",
+      "bytes": 8558,
+      "sha256": "1ccdb1d7aab8dd0f552e9a6db9c0ce0c70ae438edbe59480cbdbfc2b44dfc1bc",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/decrypt/Utils.java",
+      "bytes": 4423,
+      "sha256": "b23fa8de4fa3b923fbcee41e87aad68122457ea9c302cc1c5b66339f3072ff46",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/file/IOTools.java",
+      "bytes": 2167,
+      "sha256": "bf937263f3d0774d079dd983e5202c9a997676e964b548c1e0103863702152c3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/function/httpClient.java",
+      "bytes": 4322,
+      "sha256": "e77cab2a938f1cfdefeeee19f32cacdfe440d935e936bb45f8dc0d2510e9b717",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/function/randomPwd.java",
+      "bytes": 2796,
+      "sha256": "2b431a571f91f3c1263c88c5459953ab7515b05e838f9d779d486a8c3836077a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/platform/PlatformResolver.java",
+      "bytes": 7766,
+      "sha256": "ad0690a7b0aaf089a8a8679bae41b49004531139413e08840714572a5b8ad79c",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/pojo/Account.java",
+      "bytes": 1386,
+      "sha256": "53af6be31182021c3f9e8287e78416bda05b5898646cf90d0eb0a99cad0cc156",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/pojo/Mail.java",
+      "bytes": 900,
+      "sha256": "de5de1a8531e1509b71cf315e44d450896c13464028cbc3d0bc3826dc169612a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/pojo/SearchAssistCharList.java",
+      "bytes": 1116,
+      "sha256": "f2fb09bdc4ef5c042d358b3cea7c4e350df493df3af0d917b86aa0f4955d5d1b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/pojo/SearchUidList.java",
+      "bytes": 420,
+      "sha256": "925f00b32938844b453465203876a814ed941300a7353551aa193fd5f8ee39a6",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/pojo/UserInfo.java",
+      "bytes": 1091,
+      "sha256": "996c26bd6c57ecfce73fb6c95a4d1ed648e2147103af54460d9b4c547f5828f1",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/checkAccount.java",
+      "bytes": 1999,
+      "sha256": "91e300fce2d6312ebe4f7415304333ca7081ff64d5ea36eda9ea7b4c4396f86d",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/checkActLogin.java",
+      "bytes": 943,
+      "sha256": "7c363fa5d090075b6b4394ff325c3677031fc21a12b69eaafef006b1cdda6a6b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/checkCanCheckIn.java",
+      "bytes": 1342,
+      "sha256": "241de4626ae6a9224e1240be679effc7c340b34e50f73b437ee298e76beb5378",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/checkNeedChangeGroup.java",
+      "bytes": 1451,
+      "sha256": "f232ebbe2eb8cc901aaadffe77466aabc99e3d91099f969c0387ff29e09042cc",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/consumableNumberG.java",
+      "bytes": 1715,
+      "sha256": "0850c7c3602ec316b515b8aa35217a68fc7a742a5b470ffd994de8dd0f5c2735",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/getProduct.java",
+      "bytes": 2467,
+      "sha256": "5a710e269fe39bf6297ca2c22181465e4e73ab2e0d31a71cdaafa54abd32e5d3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/getTodayRewards.java",
+      "bytes": 1348,
+      "sha256": "aef27516977fed010c963643c1082cee47027d66a00e7181a779710a3ffffbf1",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/processArray.java",
+      "bytes": 21618,
+      "sha256": "2b837827c51d8c5a7138ce71e95937b1d9f026d46e765d7111469bcd6bee64e5",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/core/work/Reset.java",
+      "bytes": 324,
+      "sha256": "c8f3421b1f155ef84a5f88e9b746c7a44feee55e952187a1846773decbf5c2fe",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/CorsFilter.java",
+      "bytes": 1377,
+      "sha256": "fb4765518ed045a44218f0c0a62e92c613cba2e8c39c22314d05caa15ab1f687",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/account.java",
+      "bytes": 17295,
+      "sha256": "d459fe6cd312c78d095d58e5d313f8168364e8622d9afe50a007c1fc5b0f1b0b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/act25side.java",
+      "bytes": 67,
+      "sha256": "e04fbaa4078a1255d3b3b4f15dd4a88826a52a4506c0541d27c13b4fd23fdd47",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/activity.java",
+      "bytes": 5327,
+      "sha256": "e49b39a93a55d9d31cbb3020680f10d3baca6e560915e36605e7e18c2708f566",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/AddonStageSupport.java",
+      "bytes": 7263,
+      "sha256": "f990a415280f4e73275c76a1af57d185b84215e0fe9a8c5154d42e7ec1cbe561",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/ArcadeBadgeSupport.java",
+      "bytes": 11552,
+      "sha256": "4b03fc268957097217cb32e58c274bd0977e5dd876728fdc2de0c89bdf000aed",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/ArcadeController.java",
+      "bytes": 16618,
+      "sha256": "07c0f82db2cf17cb0114a6dae3edddb78169bc273530ff37af7ee2b57ddabd7d",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/background.java",
+      "bytes": 935,
+      "sha256": "6721b82b4fbb75f0384296b4161aecf7b4c3641548095f429fd9833ba16a9a77",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/BaseProductionSupport.java",
+      "bytes": 31176,
+      "sha256": "2145b1960cb347f42e02a1c7ba1c1013446f280bed436f7a50d758d5da637524",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/BaseRoomRuntimeSupport.java",
+      "bytes": 8954,
+      "sha256": "3094a49616a25ad2f4e71313af956f88087df7446fa4704ecd7f2b05195ebb79",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/BaseSkillRuntimeSupport.java",
+      "bytes": 26845,
+      "sha256": "b269ec7fa2dd79de0cf05b4a1e36c9c24cc5d99aff0a30fae28d4ce92e89117d",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/BaseStaffRuntimeSupport.java",
+      "bytes": 7662,
+      "sha256": "e69eb77b650b359beb2fd02cc1c28732e47774552230d5ad5d9755866f378b69",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/BaseWorkStateSupport.java",
+      "bytes": 7169,
+      "sha256": "a626528477050f65347e7356c81cd3afca277f6bc1e83b5df42fe5f98d3ed845",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/BattleMissionSupport.java",
+      "bytes": 1795,
+      "sha256": "2b316e5464628ff7c1212da5875d2f61bebf76ceb42b21f6b52bb31b3b012ff3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/BattleRepeatSupport.java",
+      "bytes": 3634,
+      "sha256": "363503e297f85fb64a315756c6cc9847c2a6c56bf9f23632296130b2457e0e89",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/building.java",
+      "bytes": 24114,
+      "sha256": "9a5a329bab7d626941e9c184ae6ca1466be1ebd3f38bea2880fbe7cabeb9ebda",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CampaignBattleSupport.java",
+      "bytes": 14608,
+      "sha256": "250cab796c1e9a9642cb6ef670f3e6b08209b6da149f7a7bce96b049c6989ab3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CampaignProgressionSupport.java",
+      "bytes": 2639,
+      "sha256": "34c9227e9fe5c13ef444080dc698168a33fc990036e0dab98227512f39edc22d",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/campaignV2.java",
+      "bytes": 1590,
+      "sha256": "234d89df3a6df863ee04aff3730d853ab710be5f70ecccbaeb338acc8b2a0f05",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/car.java",
+      "bytes": 61,
+      "sha256": "2164563821a84e82bdb7259df1f7e01252e7913514d4996aa5f5d1a24b70a7ba",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/character.java",
+      "bytes": 4765,
+      "sha256": "c83b7ea9814bc9bc4b3cdca4a280b6fd72c0aed949943f04c8956d279da40da7",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CharacterBuildingSupport.java",
+      "bytes": 28395,
+      "sha256": "53c003b98dc2e4f8b528216a75fb5052c1382a221391c8f30a7415d0638e60fc",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/charBuild.java",
+      "bytes": 25059,
+      "sha256": "edde3f864a8a1c6ca903d2692fbe1cdc031f4e0586e615f55d72e5059b1d1375",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/charm.java",
+      "bytes": 63,
+      "sha256": "ee7a6c13ec953022c6864d932021d80538e0e6d53c72e0ee87be4469f665183e",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CharRotationController.java",
+      "bytes": 1643,
+      "sha256": "571dae596fa5cb9691ebf8a7cc51ebd497db01b9bdec8aea3ca317b8fb4e2b43",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CharRotationSupport.java",
+      "bytes": 14915,
+      "sha256": "92d7f9a9a5a16d4491d2bdf5cd4d35fc87cd0528086ee0c21c4c229833c48550",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/ClassicCertificateRewards.java",
+      "bytes": 3502,
+      "sha256": "4ff01f35109f6579c45eaaacd946b1ff0d19a9897898ea18e084d550d7839700",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/ClassicShopCatalog.java",
+      "bytes": 8307,
+      "sha256": "4af3aba23ebc86594e57dad34c1c9899a4dcbd87afcdc030f1b563329cdba585",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/crisis.java",
+      "bytes": 27824,
+      "sha256": "4a583bdc0562e758239fcc0248274e56c70efe40d2b5e75d185c57be8d4eb7b1",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/crisisV2.java",
+      "bytes": 1682,
+      "sha256": "6205468304bc474240a601c42fd826bbc60c38d77e3514ae88e757234a900681",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CrisisV2Support.java",
+      "bytes": 6153,
+      "sha256": "8d3c28c3971accc714d01e452a1bb2935edc783091543168792af15a93f76478",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CurrentActivitiesController.java",
+      "bytes": 14500,
+      "sha256": "65f52ae02e1e371f8e8e1ed8773696f9257c2a699a994501a5d675e707227050",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CurrentActivityState.java",
+      "bytes": 7465,
+      "sha256": "afcdb53767d4c6438500e5972b300e09bded69ab88498115c24b36327f7294b1",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/CurrentActivitySupport.java",
+      "bytes": 19692,
+      "sha256": "4f8ce8c953b43d6407e7b4b5b1760b43473fdf70ae6d82c953553bb89b99a784",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/deepSea.java",
+      "bytes": 65,
+      "sha256": "3d7ef5af610193a333d7a876a407a730deab561c73f3582eb81c44bec60e1e15",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/EquipmentSupport.java",
+      "bytes": 6456,
+      "sha256": "037efaecdd1fa63c130a32c4916d8f735a4c727e94696388ca04467c8363079b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/gacha.java",
+      "bytes": 52385,
+      "sha256": "de0d04d96e12cda3241502fa0d0e07abb2508effb036692d4c28a45fff06c46b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/GalleryController.java",
+      "bytes": 3837,
+      "sha256": "e7d851bc5b9e667815a2ba27c65193bc6fecbe9eed4f48acc8decb9e4fdb7666",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/GallerySupport.java",
+      "bytes": 29622,
+      "sha256": "9db8718aae871550e3ff0b4d441778d58a0cc3f5126e3963ab568d76c939b788",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/HomeCustomizationSupport.java",
+      "bytes": 4531,
+      "sha256": "e3f0050f0e446f5cfd67ce8ed46536f3917730a80472462e5bdcf5aa995f7a4c",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/HomeThemeController.java",
+      "bytes": 934,
+      "sha256": "8df61404e97266c9066e6578516999789eb0efa51565a47a8f94cca1db5cc627",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LocalAssistSupport.java",
+      "bytes": 3025,
+      "sha256": "fbfe7f5e1b972a4b9a2df1241abea11c1217c9c47e4885fdbde7d7e455d88f61",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LocalBusinessCardController.java",
+      "bytes": 9472,
+      "sha256": "20aef32f3a6ec5515331c35e3d7b5a76e2c74512868ae59c512a5c8e489906f9",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LocalClueController.java",
+      "bytes": 970,
+      "sha256": "91626d693b9b05737d8c9abca5283f88ae9f4f34460c908c7e70b3ad1b57e934",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LocalCosmeticSupport.java",
+      "bytes": 8704,
+      "sha256": "53889dd03a873b10706713e089277cbf5c35ca950c6fc2044a7ddcc06c2d21a4",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LocalFriendSupport.java",
+      "bytes": 5933,
+      "sha256": "9545c0e049e4185de0549e4d5436f3b1b95f6449d2233fc3608d3ff04602a17c",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LocalSocialController.java",
+      "bytes": 11336,
+      "sha256": "137ede26560d1756da29dcbf66a14d84f3f36b18d6536991e1e4b56831555ce4",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LocalVisitController.java",
+      "bytes": 6356,
+      "sha256": "b29e9e9f397c265723551d10e95a0f3e1f50c18c39110d3c0221ea8f8caf4ba5",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/LoginNoticeSupport.java",
+      "bytes": 1303,
+      "sha256": "d96748077ffc5c0001043eb319843ee5ba04181827ef95f73d9a07505d2549d6",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/mail.java",
+      "bytes": 2557,
+      "sha256": "a97c7afc1b10971d9dfc0753652556eddb858ed0d8a07c0da61f495c051b4441",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/MailProtocolSupport.java",
+      "bytes": 19267,
+      "sha256": "207fa072da56098864bebc0cc05b3a82ab61d53ac59df06a091d8abac6a6557d",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/MainlineProgressionSupport.java",
+      "bytes": 4348,
+      "sha256": "3312506adfb8b677bf55993373187429432832776c5dc68d33e06cf608968fdb",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/ManufactureRuntimeSupport.java",
+      "bytes": 17256,
+      "sha256": "541bc6508e48b2c7477179ab16522603a80a090bd0fa2d4f0f22956342925a40",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/mission.java",
+      "bytes": 15836,
+      "sha256": "59c7634bc5340ce91e2187c567b928c3cf75b3c4f3f2783a23f9df2ff3a222a6",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/MissionProgressSupport.java",
+      "bytes": 54556,
+      "sha256": "027421dc95f1560d93047e1df39a7f7d6c323c293fdc6e7c4186dba9e137f213",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/NewCreditSupport.java",
+      "bytes": 4926,
+      "sha256": "9c72f38625b22ae2dac1f1e79ab716b6b3ee8c89ac86a795161236179dba28e3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/NormalRecruitSupport.java",
+      "bytes": 18086,
+      "sha256": "16630123f99bb0269ef3ee37ad5fdbb280a54bbf913a013d2b2901446223b45a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/pay.java",
+      "bytes": 4906,
+      "sha256": "ceb161db6500d70a82292be5429ce0796759f732cd0a1d4644fdd463730d91cb",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/ProfileSupport.java",
+      "bytes": 1583,
+      "sha256": "2a54dbbeb81553d229a1c95c14d1cd07348aeaa1a6a4b2da4fee7093b987a960",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/quest.java",
+      "bytes": 87450,
+      "sha256": "6596882fe93a14bb5ef57a2eae189181ec6fce638250e74da57908286c33306b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/RecalRuneController.java",
+      "bytes": 1122,
+      "sha256": "1eaf4bf70c6b9d8bd07ba177db54581c4556a928ce0c516de0a40082b055a2da",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/RecalRuneSupport.java",
+      "bytes": 9471,
+      "sha256": "e5696566f45039c3ece57286ce00551f64874c4806b051abd8fdde188092ac02",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/RecycleRoomBuildSupport.java",
+      "bytes": 2516,
+      "sha256": "0984c81fc88c85ac1c088c938c7d1e5269942249e3b912e7530b4e88ac4f5391",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/retro.java",
+      "bytes": 1358,
+      "sha256": "fffa961d6634b03f961d03dd48ed6ae950f2c3a3d1f2b788ff13dd179431b691",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/RetroSupport.java",
+      "bytes": 1748,
+      "sha256": "66e307d1b16ad3c1dfd2575896938aece2564feeea2b8cc68fc6b0768eb706cf",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/RewardOnlyController.java",
+      "bytes": 3514,
+      "sha256": "914e86020759b2b8880f808e62ca876b8c2e0c033281db6fb24b11ed0d604d25",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/rlv2.java",
+      "bytes": 62,
+      "sha256": "a15c7a69ec2165e4dd6a74abc17b89a910d0df14945f423c93b0d5380953afd5",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/RogueController.java",
+      "bytes": 6769,
+      "sha256": "419db134594924de8371051c3575cbdc1121a268020a44dc369f1a7775619a95",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/RogueSupport.java",
+      "bytes": 58090,
+      "sha256": "113da13233b369562c1aae237244bbf65a875782ba1dfdf51fbbcd92aff80cef",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/sandboxPerm.java",
+      "bytes": 10514,
+      "sha256": "4af35baf9a9fc3e865de3ff33f695c01bbeba6d036a6f5ed613f707683a4a137",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/SandboxPermSupport.java",
+      "bytes": 3437,
+      "sha256": "1c75f2f19a311823cd686857aa0caf0f63e1c84ff305d1b7b4bf511be0cd3bf4",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/SandboxProgressSupport.java",
+      "bytes": 42791,
+      "sha256": "ab26c3c06c9199e53c958b329ef85333ab9c9c4b4d43047175d2985f878576ab",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/shop.java",
+      "bytes": 30012,
+      "sha256": "71bfebc7fc52808bc2b8ebfcc987eb01fa92e31bc95a8cf727f22cc99670a24b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/ShopTransactionSupport.java",
+      "bytes": 35490,
+      "sha256": "9d8fa9c422fcc2258520c763307ec9fdb13e1b60ae07839f7f910c4eead3c2f8",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/social.java",
+      "bytes": 852,
+      "sha256": "da0e6a61cd03c7552d047016bf0faaeb2afea3b7d49a11045d9d22df9f900575",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/story.java",
+      "bytes": 3219,
+      "sha256": "6eccffc266dbebee0c85ec8833fb86c35bf86effd145f84593fbac2efc6daad3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/storyreview.java",
+      "bytes": 3663,
+      "sha256": "668487cbdb5209577d5eee8d6b34f3fe118cd1cc2b411f9a31b2a78b25291bd8",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/templateShop.java",
+      "bytes": 70,
+      "sha256": "703cd1fc5abd2eeeb71b8dc18eace848064d324d16cd0127219b682c180113ca",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/tower.java",
+      "bytes": 2939,
+      "sha256": "4c0b51c46a218113d2886c3a34700a72b426ba8a974d984e619045473f6ee244",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/TowerNormalSupport.java",
+      "bytes": 40068,
+      "sha256": "789b69106e5e920e0944448a326501ff2185f34400d69ae15303161c37291f84",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/TowerSeasonSupport.java",
+      "bytes": 3685,
+      "sha256": "5e30f51cc4b18bba9b287503390f73fbbead204f7f5c45449c149f5e2deca337",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/TowerTrainingSupport.java",
+      "bytes": 14972,
+      "sha256": "2e58137cdfcd7d77fe97b3161340e28b6ffdbd458a213834f0aa99d56534d5ac",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/TrainingSkillSupport.java",
+      "bytes": 13023,
+      "sha256": "90e64e8d1b97531ea2924840ab1b18b12127440113f389f0a3720d0ac8b5290d",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/game/users.java",
+      "bytes": 36329,
+      "sha256": "cd6ca4604a080604cbecc03278d3268d3865a4616c60bf349daa67618eaca4bc",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/general/v1.java",
+      "bytes": 1983,
+      "sha256": "bf0ecc50e1678d05400c87ff2d3a46b6a5d8ea86d8c9e9186ad518bc7ec508b9",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/GlobalExceptionHandler.java",
+      "bytes": 4440,
+      "sha256": "486c6c2e6aa453d447e8fa2cb3d0c4a6fb6664d44439868a6a5f4644581b4909",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/network.java",
+      "bytes": 1920,
+      "sha256": "c6cc2834c5ff2e21b32c7fcb318c380b066779559072b937c77f077b9283d5a4",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/testAPI.java",
+      "bytes": 6857,
+      "sha256": "98ca172ee0a52d9639d14ae81c26ade1e8031fca634fb8265ff85f68f7a80af7",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/track/batch_event.java",
+      "bytes": 544,
+      "sha256": "0f048b1856c35247d3b965c63c1bcf23b7ceadfb345122933be78a4388351359",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/track/beat.java",
+      "bytes": 480,
+      "sha256": "a70c57d770eb7568c236c343f25e775a23ec76cf095017677bf716e8041297a0",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/track/event.java",
+      "bytes": 484,
+      "sha256": "9aed46f07872469da6419d419ae2cf21f0ebd18fcc30dfaff5bfc1762f5b2171",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/backend-src/com/hypergryph/arknights/track/ipv6.java",
+      "bytes": 312,
+      "sha256": "cf86aa3ffdb6aa216e8fb4ff3bccc42c2e43dff22b112f3c499f80cbd1ba6b6e",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/Filter.java",
+      "bytes": 209,
+      "sha256": "c42d8b42d1b5fd30af59ce61c9615f54f4bc5b39a2b0c612ad9510b4cbf79de4",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/FilterChain.java",
+      "bytes": 195,
+      "sha256": "7d69b3c3c15782f17d1b4db794cf7ae3c811e64875839b6338cdd2b4aa629456",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/http/HttpServletRequest.java",
+      "bytes": 332,
+      "sha256": "97a8363970e4df582dae66f8d8015717cb573b966419b12e5625044a7d411c5a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/http/HttpServletResponse.java",
+      "bytes": 519,
+      "sha256": "c2cc13f52c1022d4a03791bb68acf7d6e695b6378cfb51aa0ef670437636cd8b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/ServletException.java",
+      "bytes": 331,
+      "sha256": "eabdeedc610b73be1ada1c8be79585ba129a5a519951e678d5c4103ea447aabb",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/ServletOutputStream.java",
+      "bytes": 179,
+      "sha256": "fc02c0570c8cfce28f80f88896b507a375cf237d89f2d96f28d3e472740d440c",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/ServletRequest.java",
+      "bytes": 123,
+      "sha256": "fbd561843d6311d25e30989276cabe6691f3c15a866dfad409defb11e24cb6ab",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/javax/servlet/ServletResponse.java",
+      "bytes": 62,
+      "sha256": "53bab841be07d63a52a4674adfeb74ccdd103cc9880dcd19a96557fa1c2635e6",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/apache/logging/log4j/Logger.java",
+      "bytes": 891,
+      "sha256": "5c37e1080ae6375e5cae8ecfc45edb96953afcc8f90c7ef4849a27fbc89c072e",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/apache/logging/log4j/LogManager.java",
+      "bytes": 356,
+      "sha256": "4336177a1d9621cbabadfb67f7cd6a847b5f0da857b21d2a7cdb7f0032546108",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/slf4j/Logger.java",
+      "bytes": 876,
+      "sha256": "3d3edb2f2d13c8561a00d4251d096c203c5acb1dfa8eb0445700d0f36f93e159",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/slf4j/LoggerFactory.java",
+      "bytes": 347,
+      "sha256": "9b9bf7764ecb106e1128214ad25a959c86077967d4c3598e2544e3c54c8d148a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/beans/factory/annotation/Autowired.java",
+      "bytes": 265,
+      "sha256": "5fcaff970cf7fa6da4e0901a5451bddad4deb14ec7b23a762cca84df51bad210",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/core/annotation/Order.java",
+      "bytes": 251,
+      "sha256": "b58c2418f9b902557f3a0753970013815de1aede6a934e2605ce157750ebbaa3",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/core/Ordered.java",
+      "bytes": 152,
+      "sha256": "a848a6e95b2f5748a4600ed78a514e420c886fc52c1a9abdaccf2afb28cb5eff",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/http/HttpStatus.java",
+      "bytes": 425,
+      "sha256": "5ebea505d9a438f7046ac2af1ebad9d9e9d8c00ba65f7e7b3b9e2269dac42426",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/stereotype/Component.java",
+      "bytes": 199,
+      "sha256": "2922cccea29df79ac9c9bfe4d9d595a4486d80d6f9ccf0a6f66d2d00c222dfaf",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/util/DigestUtils.java",
+      "bytes": 806,
+      "sha256": "49433ceca148e23834717c378dd4cd285f5efebef948d306987f97dcb14ede42",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/util/StringUtils.java",
+      "bytes": 910,
+      "sha256": "b7a18f95e47066bb9a6e3f0c1269f1538fd3ed0520e1b9ea55e17afc93b8cfdc",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/DeleteMapping.java",
+      "bytes": 479,
+      "sha256": "f55bd30707765c0eb34f1860bdd087cb10d3cb63a71c3eebe95247cbfaa5b64f",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/ExceptionHandler.java",
+      "bytes": 245,
+      "sha256": "1ab26bbb5f5fe269a34e2c64fbf59aeb1f8f9693f8588025f0e499cee85750ca",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/GetMapping.java",
+      "bytes": 473,
+      "sha256": "dabb2d41dbde2fd3bd320546b30cc283389ce7ab42f131aa559cfd24984e88e6",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/PatchMapping.java",
+      "bytes": 477,
+      "sha256": "9bab6fb6c08846cc4d3f5ad93a147c80049de789abc39d219c44148ecee52c59",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/PathVariable.java",
+      "bytes": 291,
+      "sha256": "4c147fd252cdaf323e3883057aa460d1e5e854676ef93f3ea082d3e46d3496cf",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/PostMapping.java",
+      "bytes": 475,
+      "sha256": "f7c3e6205dcbb6e210c7471c6ea77f2f6c26674668896e87db1ef31bdf62f173",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/PutMapping.java",
+      "bytes": 473,
+      "sha256": "a8b560f2a878e8f5b0a363612360dfeaa12b771835be858003c5d80634637118",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/RequestBody.java",
+      "bytes": 227,
+      "sha256": "92e3a6c9b43838219067065e3803c96ba0388905a258f573aafeb3727814d9f2",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/RequestHeader.java",
+      "bytes": 356,
+      "sha256": "9bae1a4fd19632bd4aaa2f8b9d4ddaf74ffdefa87ac1fa21da96a19c41dc02f9",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/RequestMapping.java",
+      "bytes": 521,
+      "sha256": "62b85684c0eb143aac4e819c4cdbf91043afefb0d893b999a9c911c07a35550a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/RequestMethod.java",
+      "bytes": 133,
+      "sha256": "c7967b4843c4587cb0b36254301f00bf8f8194a4ae1f64435020a836d0dd31c9",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/RequestParam.java",
+      "bytes": 355,
+      "sha256": "aa79ecea7dd7853ad8c3488e0077ba4d04b7220d702998bf3043b81f39a0128b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/ResponseBody.java",
+      "bytes": 207,
+      "sha256": "3c1276e3a89856e6d299bfde1497fb75edb56244e4059622dfc4c1ae3e95c85e",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/RestController.java",
+      "bytes": 219,
+      "sha256": "24351a4552bed35d058179ff9861bb4b48fe130c8a43fda2def3d0e7383fc45f",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/RestControllerAdvice.java",
+      "bytes": 314,
+      "sha256": "d99824432b9171ef6e046e11bc30bc85bbcca4ff1a0df6f8ee9a0de9a1cd0606",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/bind/annotation/ValueConstants.java",
+      "bytes": 237,
+      "sha256": "310fadba64aaa5ddaeaa24928439d2ab50259d867888ab662d6ac8cea198bc5b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/framework-src/org/springframework/web/servlet/NoHandlerFoundException.java",
+      "bytes": 647,
+      "sha256": "0a472cb090537d9de309c2474d5db7ff230125e144bd966cb8892d1135f494d7",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/com/codex/arklocal/storage/JsonCounterPatch.java",
+      "bytes": 6527,
+      "sha256": "d413e00312129d034f3342d38edf6bde1b6765acc688129d9d026d71b47bed27",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/com/codex/arklocal/storage/LocalStore.java",
+      "bytes": 15693,
+      "sha256": "19bc70e5233b18cb39a0452e86a29e7aff2e47ecea37ff78c0c5d25c35e9f53b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/com/codex/arklocal/storage/SnapshotCodec.java",
+      "bytes": 7349,
+      "sha256": "53510fd9f77799f91e2fd6be2ffad4ba3c5ea3576147196bcc3fe423e7803fba",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/com/codex/arklocal/storage/StoreSchema.java",
+      "bytes": 3440,
+      "sha256": "68abde3cf58749d183b1fbba7b305f3054ac859ab88ad1261c8789590addbd3e",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/org/springframework/jdbc/core/BeanPropertyRowMapper.java",
+      "bytes": 3449,
+      "sha256": "8e3be58873bd1ed6506f8cdb43e898c09747046b92855648089e28c5e808c6c7",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/org/springframework/jdbc/core/JdbcTemplate.java",
+      "bytes": 15078,
+      "sha256": "b32f724d414ab7341da5676723d7feb49aabad18fbbad2715c8b5fbfbf9e42e0",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/ui-src/com/codex/arklocal/ui/LocalOverlay.java",
+      "bytes": 42876,
+      "sha256": "315ff79222e8f6aefb86ca87fdcdf6461178a3e40f3bbea5b536259bf1b17614",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/HarnessActivity.java",
+      "bytes": 6068,
+      "sha256": "224d668a9c16590a8d83a93bf25b834c8e5791bbf39aa536ec4fce448a49021b",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LocalBackend.java",
+      "bytes": 30864,
+      "sha256": "f6619362d714472a1784bddadc530bc1d26ca22aa47af71803dbd96438111c10",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LocalGachaOptions.java",
+      "bytes": 19140,
+      "sha256": "b286c0f483ef444614237b5e6bf23f9bb990c41464036e7879d291913603ea39",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LocalHttpServer.java",
+      "bytes": 24203,
+      "sha256": "17fa4490ac81d0f1fdb1b6b259e4f7ee12ae3b12d81771ceb2b16baa374ed803",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LocalProtocolWindow.java",
+      "bytes": 10149,
+      "sha256": "c167a8b5156777e248f9cc6c4d827830df94d9761f19fcfb351b4cca64a1b73f",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LocalSaveGrants.java",
+      "bytes": 10947,
+      "sha256": "45c417440315795454eff3e2b7a9b336f943cd6dc0fe11aad4e4952d5e78390a",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LocalSaveMigrations.java",
+      "bytes": 3296,
+      "sha256": "5738ea11897526dcdda35b546a9043367f636203f8c449647e6bccc3f85b4244",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LocalSaveSync.java",
+      "bytes": 5683,
+      "sha256": "c89aaeb07d83ec26703910e8720e3c8e437c848cb5984dd3eaf67987feae4968",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/LoopbackConnectProxy.java",
+      "bytes": 6964,
+      "sha256": "db5687be1fe7cdad3802b30efa399682ff1b2555a8354e10b2382c2a4e2cb5a9",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/ModuleEntry.java",
+      "bytes": 3357,
+      "sha256": "e4ac7312aa689ec19ad2feab0dc079b578e7f5f6e53d78dbeb793582d76236ec",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/ModuleRuntime.java",
+      "bytes": 1818,
+      "sha256": "2dc6954c9f541f5e01b81513ea12f27d6ec07f3cfdc6121b2bbf7dfead389dd0",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/OfficialPublicContent.java",
+      "bytes": 26821,
+      "sha256": "59e01181df96da837ffd7e18714eb2741c97bd9a86a025264e1eaa28bfa70eda",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/RawHttpBody.java",
+      "bytes": 2979,
+      "sha256": "c48ed019acea4b3adb35a2d77d649404f773c5e18b45e389ce899eebe4fa2218",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/runtime-src/com/codex/arklocal/WebDavSaveSync.java",
+      "bytes": 10365,
+      "sha256": "e2a05708ec4e8cd35825a6f5f0a762be692af90494edeb0758fcbad6bc9ea441",
+      "category": "production-module"
+    },
+    {
+      "path": "work/phone-integrated/bootstrap-src/com/codex/arklocal/bootstrap/BootstrapProvider.java",
+      "bytes": 3511,
+      "sha256": "70bad16bcc6ca17d31674756d895ff6fc8bb018893332daa6ed978b5e7fbe7c0",
+      "category": "bootstrap-src"
+    },
+    {
+      "path": "work/phone-integrated/bootstrap-src/com/codex/arklocal/bootstrap/ExportActivity.java",
+      "bytes": 1055,
+      "sha256": "fe9441a453739076c5f45432b0f399acc85f3811adbb0d7be476c4217a4da9bc",
+      "category": "bootstrap-src"
+    },
+    {
+      "path": "work/phone-integrated/compile-stubs/de/robv/android/xposed/callbacks/XC_LoadPackage.java",
+      "bytes": 276,
+      "sha256": "e68bd7e197766c15db622c70ee9914e313e81b2cc45308eaf17bcb31d8e31908",
+      "category": "compile-stubs"
+    },
+    {
+      "path": "work/phone-integrated/compile-stubs/de/robv/android/xposed/IXposedHookLoadPackage.java",
+      "bytes": 182,
+      "sha256": "7c5a22682adc4f7dc1e33af61c6297f310974faeac7c50009b155ec0d4064f0b",
+      "category": "compile-stubs"
+    },
+    {
+      "path": "work/phone-integrated/compile-stubs/de/robv/android/xposed/IXposedHookZygoteInit.java",
+      "bytes": 223,
+      "sha256": "35cfc420936ab54628a0167d91238bff2a61fc1dcedeecd0ee8ecab7e198dc55",
+      "category": "compile-stubs"
+    },
+    {
+      "path": "work/phone-integrated/compile-stubs/de/robv/android/xposed/XC_MethodHook.java",
+      "bytes": 460,
+      "sha256": "a794021c99224e466e69f9f6919d8c710c1129310e9b6d47a851a76d1272d54a",
+      "category": "compile-stubs"
+    },
+    {
+      "path": "work/phone-integrated/compile-stubs/de/robv/android/xposed/XposedBridge.java",
+      "bytes": 222,
+      "sha256": "08b8e112ccd48f11c0daaa6a68cfa88d367e370caa17e2160f7756e0b87419a3",
+      "category": "compile-stubs"
+    },
+    {
+      "path": "work/phone-integrated/compile-stubs/de/robv/android/xposed/XposedHelpers.java",
+      "bytes": 283,
+      "sha256": "4f124f6efa67d42e809080835c0a85b70904bc43ee9110509f0917a5e444d5bd",
+      "category": "compile-stubs"
+    },
+    {
+      "path": "work/phone-integrated/build_android.py",
+      "bytes": 5909,
+      "sha256": "21d72a81887725ccee9924caef67bf30d493b75081f06c79c3089ff0d94c6435",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/build_integrated_apk.py",
+      "bytes": 10014,
+      "sha256": "2d640f7fb4e056954531fe3454270a8b9b44f7ba74c7a846ad40cf10df8aec0f",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/append_components.py",
+      "bytes": 5153,
+      "sha256": "3bd9624a9c50765887c80a81f4efff67ce369610998f3e2e21efbc0cae6751b0",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/prepare_payload.py",
+      "bytes": 3387,
+      "sha256": "4f7f326fcc7a0281f1c60b4c5e2790acb97b25d21df9ba8488c1559bdcf72bc1",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/prepare_proxy_pki.py",
+      "bytes": 2516,
+      "sha256": "9d623a279b4271e4dae8e37f3a18c198113cdee6dad1f95b6f7a0680d5537882",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/prepare_xposed_stubs.py",
+      "bytes": 2374,
+      "sha256": "c1791a6cc0d89fec10d70b7cef98b21cbdd6eb839344d56dabb7fa4d4f730c5d",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/credit_limited_catalog.py",
+      "bytes": 1623,
+      "sha256": "49d8dd304992b71d32d558aa466abbff06d934878d537318bf0e88eec1a1e94a",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/export_seed.py",
+      "bytes": 14462,
+      "sha256": "36dc5f25431e1cd91ffa07c24b6b51f076b211d6d8668baf52bf5c5a3edeb9ea",
+      "category": "legacy-build-tool"
+    },
+    {
+      "path": "work/phone-integrated/web-src/login.html",
+      "bytes": 9805,
+      "sha256": "4f0409dc56b908b1c851fe67ed5ccba1d84c6efc43ba39ec051117a7cc2778ad",
+      "category": "web-source"
+    },
+    {
+      "path": "work/phone-integrated/web-src/register.html",
+      "bytes": 6253,
+      "sha256": "e74361690cef6c9b1d01342b35590e3cd545711322d971e58a705b9fe08260c8",
+      "category": "web-source"
+    },
+    {
+      "path": "work/phone-integrated/web-src/user-center.html",
+      "bytes": 7957,
+      "sha256": "11b339298b7ceb59f422f29750ba2a764a46b3323c854d59ffd6579636ae8fb6",
+      "category": "static-web-template"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/tests/test_storage.py",
+      "bytes": 8854,
+      "sha256": "dbb1311b96c33877d3fc57d5aaee4a36fda9c4b5ca4be3643b03161b913b1e6f",
+      "category": "storage-test-source"
+    },
+    {
+      "path": "work/phone-integrated/storage-src/tests/verify_java.py",
+      "bytes": 6329,
+      "sha256": "d32b1458dd170561caece084b95de14c2e9550cfcaabd9f81ed9d9781df00290",
+      "category": "storage-test-source"
+    },
+    {
+      "path": "work/phone-local/loopback_nsc.py",
+      "bytes": 2083,
+      "sha256": "6f220421df40489bb416366fd7887b1e06cedb098238918f37bdf84f055b8321",
+      "category": "packaging-support-source"
+    },
+    {
+      "path": "work/apk/patched/20261023T163128.412501Z/AndroidApkBridge.java",
+      "bytes": 2196,
+      "sha256": "3bac0dae60570189e36e85e0a5a03df29cf08c66ce44beebf8e279981ecdd0d1",
+      "category": "signing-bridge-source"
+    }
+  ]
+}
